@@ -88,8 +88,15 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+// adding prompts for the user 
+prompt("Would you like lowercase characters in your password?")
+prompt("Would you like upperCase characters in your password?")
+prompt("Would you like numeric characters in your password?")
+prompt("Would you like special characters in your password?")
 // Function to prompt user for password options
 function getPasswordOptions() {
+ 
+ 
 
 }
 
@@ -116,3 +123,15 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
+
+// pseudocode 
+// prompts 
+
+// 1. Create the prompt telling the user to select the number between 10 and 64. 
+// generate if statement for less than 10 message and more than 64
+// 2. Would you like lowercase characters in your password? Yes/ No
+// 3. Would you like upperCase characters in your password? Yes/ No
+// 4. Would you like numeric characters in your password? Yes/ No
+// 5. Would you like special characters in your password? Yes/ No
+// 6. else, please select at least one character type 
+// 7. 
