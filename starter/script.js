@@ -88,50 +88,76 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-// adding prompts for the user 
-prompt("Would you like lowercase characters in your password?")
-prompt("Would you like upperCase characters in your password?")
-prompt("Would you like numeric characters in your password?")
-prompt("Would you like special characters in your password?")
-// Function to prompt user for password options
-function getPasswordOptions() {
- 
- 
+var userInput= [];
+var numberOfChar = 0;
 
-}
-
-// Function for getting a random element from an array
-function getRandom(arr) {
-
-}
-
-// Function to generate password with user input
-function generatePassword() {
-
-}
-
-// Get references to the #generate element
+// Original code, Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
-
-  passwordText.value = password;
-}
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
 
-// pseudocode 
-// prompts 
 
-// 1. Create the prompt telling the user to select the number between 10 and 64. 
-// generate if statement for less than 10 message and more than 64
-// 2. Would you like lowercase characters in your password? Yes/ No
-// 3. Would you like upperCase characters in your password? Yes/ No
-// 4. Would you like numeric characters in your password? Yes/ No
-// 5. Would you like special characters in your password? Yes/ No
-// 6. else, please select at least one character type 
-// 7. 
+// // Write password to the #password input
+
+function writePassword() {
+
+var validInputs= getPrompts(); // returns true or false 
+var passwordText = document.querySelector('#password');
+
+// checking if the condition for pass generation is met 
+
+if (validInputs) {
+  var password = generatePassword();
+  passwordText.value = password;
+
+} else {
+  passwordText.value = ""; 
+
+}
+};
+
+  // generating pass based on user input
+
+function generatePassword() {
+
+  var generatePass= "";
+
+  for (i = 0; i < numberOfChar.length; i++) { 
+
+    var random = Math.floor(Math.random() * userInput.length); 
+    generatePass= generatePass + userInput[random];
+
+  }
+  return generatePass;
+}
+
+
+// Prompt function for the password length
+
+
+function getPrompts() {
+  userInput = [];
+
+  numberOfChar= parseInt(prompt("Please select the number of characters you would like your password to be minimum 10 and maximum of 64", "10")); //NaN
+
+  if(isNaN(numberOfChar)|| numberOfChar < 10|| numberOfChar > 64) {
+    alert ("Please enter a valid number");
+    return false; 
+
+  }
+  if(confirm("Would you like lowercase characters in your password?")) {
+    userInput = userInput.concat(lowerCasedCharacters);
+  }
+  if(confirm("Would you like upperrcase characters in your password?")) {
+    userInput = userInput.concat(upperCasedCharacters);
+  }
+  if(confirm("Would you like numeric characters in your password?")) {
+    userInput = userInput.concat(numericCharacters);
+  }
+  if(confirm("Would you like special characters in your password?")) {
+    userInput = userInput.concat(specialCharacters);
+  } 
+  return true;
+} 
