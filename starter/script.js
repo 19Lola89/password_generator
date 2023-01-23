@@ -88,76 +88,77 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-var userInput= [];
-var numberOfChar = 0;
+var charLength = 7;
+var userInput = [];
 
-// Original code, Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
+// Query selectors
 
+var generateBtn = document.querySelector("#generate");
 
-// Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
+// add event listener to generate button
 
+generateBtn.addEventListener("click", writePassword);
 
-// // Write password to the #password input
+// Write password to #password input
 
-function writePassword() {
+function writePassword() { 
 
-var validInputs= getPrompts(); // returns true or false 
-var passwordText = document.querySelector('#password');
+  var correctPrompts= getPrompts(); // true or false
+  var passwordText = document.querySelector("#password"); 
 
-// checking if the condition for pass generation is met 
+  if(correctPrompts) {
 
-if (validInputs) {
-  var password = generatePassword();
-  passwordText.value = password;
+    var newPassword = generatePassword();
 
-} else {
-  passwordText.value = ""; 
+    passwordText.value = newPassword;
 
+  } else {
+    passwordText.value = "Sorry buddy, enter correct values for me to generate the password :) "
+  }
+   
 }
-};
 
-  // generating pass based on user input
+function generatePassword() { 
+  // generating password from pormpts
 
-function generatePassword() {
-
-  var generatePass= "";
-
-  for (i = 0; i < numberOfChar.length; i++) { 
-
+  var password = "";
+  for(var i= 0; i < charLength; i++) {
     var random = Math.floor(Math.random() * userInput.length); 
-    generatePass= generatePass + userInput[random];
+    password = password + userInput[random]; 
 
   }
-  return generatePass;
+  return password; 
+
 }
-
-
-// Prompt function for the password length
-
-
 function getPrompts() {
+ 
+//getting the answers from the user
   userInput = [];
+  charLength= parseInt(prompt("Please select the number of characters you would like your password to be minimum 10 and maximum of 64")); //NaN
 
-  numberOfChar= parseInt(prompt("Please select the number of characters you would like your password to be minimum 10 and maximum of 64", "10")); //NaN
+    if(isNaN(charLength)|| charLength < 10|| charLength > 64) {
+      alert ("Please enter a valid number");
+      return false; 
+    }
 
-  if(isNaN(numberOfChar)|| numberOfChar < 10|| numberOfChar > 64) {
-    alert ("Please enter a valid number");
-    return false; 
+    if(confirm("Would you like lowercase characters in your password?")) {
+          userInput = userInput.concat(lowerCasedCharacters);
+        } 
+        if(confirm("Would you like upperrcase characters in your password?")) {
+          userInput = userInput.concat(upperCasedCharacters);
+        }
+        if(confirm("Would you like numeric characters in your password?")) {
+          userInput = userInput.concat(numericCharacters);
+        }
+        if(confirm("Would you like special characters in your password?")) {
+          userInput = userInput.concat(specialCharacters);
 
-  }
-  if(confirm("Would you like lowercase characters in your password?")) {
-    userInput = userInput.concat(lowerCasedCharacters);
-  }
-  if(confirm("Would you like upperrcase characters in your password?")) {
-    userInput = userInput.concat(upperCasedCharacters);
-  }
-  if(confirm("Would you like numeric characters in your password?")) {
-    userInput = userInput.concat(numericCharacters);
-  }
-  if(confirm("Would you like special characters in your password?")) {
-    userInput = userInput.concat(specialCharacters);
-  } 
-  return true;
-} 
+        } 
+        return true;
+
+    
+}
+      
+
+
+
