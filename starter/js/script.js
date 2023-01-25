@@ -134,9 +134,9 @@ function getPrompts() {
  
 //getting the answers from the user
   userInput = [];
-  charLength= parseInt(prompt("Please select the number of characters you would like your password to be minimum 10 and maximum of 64")); //NaN
+  charLength= parseInt(prompt("Please select the number of characters you would like your password to be minimum 8 and maximum of 128")); //NaN
 
-    if(isNaN(charLength)|| charLength < 10|| charLength > 64) {
+    if(isNaN(charLength)|| charLength < 8|| charLength > 128) {
       alert ("Please enter a valid number");
       return false; 
     }
